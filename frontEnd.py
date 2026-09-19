@@ -6,21 +6,47 @@ model = joblib.load("KNN_heart_model.pkl")
 scaler = joblib.load("KNN_scaler.pkl")
 expected_columns = joblib.load("heart_columns.pkl")
 
-st.title("Heart stroke prediction by Amit🫀")
-st.markdown("Provide the following details :")
+st.title("🫀 Heart Disease Prediction")
+st.markdown("Machine Learning prediction using K-Nearest Neighbors (KNN).")
+st.markdown("Provide the following patient details:")
 
 age = st.slider("Age", 18,100,25)
-sex = st.selectbox("SEX", ['M','F'])
-ChestPain = st.selectbox("Chest Pain Type", ["ATA", "NAP", "TA", "ASY"])
+sex = st.selectbox("SEX", ['Male','Female'])
+ChestPain = st.selectbox(
+    "Chest Pain Type",
+    ["ATA - Atypical Angina",
+     "NAP - Non-Anginal Pain",
+     "TA - Typical Angina",
+     "ASY - Asymptomatic"]
+)
 RestingBP = st.number_input("Resting Blood Pressure (mm Hg)", 80, 200, 120)
 Cholesterol = st.number_input("Cholesterol (mg/dL)", 100, 600, 200)
 FastingBS = st.selectbox("Fasting Blood Sugar > 120 mg/dL", [0, 1])
-RestingECG = st.selectbox("Resting ECG", ["Normal", "ST", "LVH"])
+RestingECG = st.selectbox(
+    "Resting ECG",
+    {
+        "Normal": "Normal",
+        "ST-T Wave Abnormality (ST)": "ST",
+        "Left Ventricular Hypertrophy (LVH)": "LVH"
+    }
+)
 MaxHR = st.slider("Max Heart Rate", 60, 220, 150)
-ExerciseAngina = st.selectbox("Excercise-Induced Angina", ["Y", "N"])
+ExerciseAngina = st.selectbox(
+    "Exercise-Induced Angina",
+    {
+        "Yes (Y)": "Y",
+        "No (N)": "N"
+    }
+)
 Oldpeak = st.slider("Oldpeak (ST Depression)", 0.0, 6.0, 1.0)
-st_slope = st.selectbox("ST Slope", ["UP", "Flat", "Down"])
-
+st_slope = st.selectbox(
+    "ST Slope",
+    {
+        "Upward (UP)": "UP",
+        "Flat": "Flat",
+        "Downward (Down)": "Down"
+    }
+)
 if st.button("Predict"):
 
     raw_input = {
