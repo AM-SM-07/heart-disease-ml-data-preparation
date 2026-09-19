@@ -58,7 +58,7 @@ if st.button("Predict"):
     probability_percentage = probability * 100
 
     st.write("Prediction:", prediction)
-    st.write(f"Heart Disease Probability: {probability:.2%}%")
+    st.write(f"Heart Disease Probability: {probability:.2%}")
 
     if prediction == 1:
         st.error("⚠️ High Risk of Heart Disease")
